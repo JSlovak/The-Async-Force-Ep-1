@@ -80,7 +80,6 @@ function planetAppearance(){
        const requestData = JSON.parse(this.responseText);
        planetList.innerHTML = requestData.name;
       }
-
     }
   }
  }
