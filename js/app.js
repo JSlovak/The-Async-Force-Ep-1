@@ -26,7 +26,7 @@ allDataoReq1.send();
 
 function EpOne(){
   const requestData = JSON.parse(this.responseText);
-  // console.log(requestData);
+  console.log(requestData);
 
   const persons = new XMLHttpRequest();
   persons.addEventListener('load', personsOfInterests);
@@ -41,6 +41,9 @@ function EpOne(){
   function personsOfInterests(){
     var personData = JSON.parse(this.responseText);
     console.log(personData.results);
+
+    person4();
+    person14();
 
     function person4() {
       const person4Name = document.querySelector('#person4Name');
@@ -60,14 +63,12 @@ function EpOne(){
      }
 
     function person14(){
-      const requestData = JSON.parse(this.responseText);
       const person14Name = document.querySelector('#person14Name');
-      person14Name.innerHTML = requestData.name;
-      console.log(requestData.results);
+      person14Name.innerHTML = personData.results[13].name;
 
       const oReq = new XMLHttpRequest();
       oReq.addEventListener('load', person14Species);
-      oReq.open('GET', `${requestData.results[13].species}`);
+      oReq.open('GET', `${personData.results[13].species}`);
       oReq.send();
 
       function person14Species() {
@@ -79,9 +80,33 @@ function EpOne(){
   }
 
   function planetList(){
-      const requestData = JSON.parse(this.responseText);
-      console.log(requestData.results);
+      var planetData = JSON.parse(this.responseText);
+      const resultsLength = planetData.results.length;
+          console.log(planetData.results);
 
+      for(let i=0; i<resultsLength; i++){
+        const filmList = document.querySelector('#filmList');
+        const film = document.createElement('li');
+        const planetsLength = requestData.results[i].planets.length;
+
+        film.innerHTML = planetData.results[i].title;
+        filmList.appendChild(film);
+
+        for(let j= 0; j<planetsLength; j++){
+          const planetList = document.createElement('ul');
+          film.appendChild(planetList);
+
+          const planetoReq2 = new XMLHttpRequest();
+          planetoReq2.addEventListener('load', listPlanets);
+          planetoReq2.open('GET',`${planetData.results[i].planets[j]}`,false);
+          planetoReq2.send();
+
+          function listPlanets() {
+           const requestData = JSON.parse(this.responseText);
+           planetList.innerHTML = requestData.name;
+          }
+        }
+      }
     }
 }
 // // function called, for Person 4 spec
@@ -122,30 +147,5 @@ function EpOne(){
 // function called for Planets appearance in Movie list spec
 
 // function planetAppearance(){
-//   const requestData = JSON.parse(this.responseText);
-//   const resultsLength = requestData.results.length;
 
-//   for(let i=0; i<resultsLength; i++){
-//     const filmList = document.querySelector('#filmList');
-//     const film = document.createElement('li');
-//     const planetsLength = requestData.results[i].planets.length;
-
-//     film.innerHTML = requestData.results[i].title;
-//     filmList.appendChild(film);
-
-//     for(let j= 0; j<planetsLength; j++){
-//       const planetList = document.createElement('ul');
-//       film.appendChild(planetList);
-
-//       const planetoReq2 = new XMLHttpRequest();
-//       planetoReq2.addEventListener('load', listPlanets);
-//       planetoReq2.open('GET',`${requestData.results[i].planets[j]}`,false);
-//       planetoReq2.send();
-
-//       function listPlanets() {
-//        const requestData = JSON.parse(this.responseText);
-//        planetList.innerHTML = requestData.name;
-//       }
-//     }
-//   }
 //  }
