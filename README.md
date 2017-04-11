@@ -16,9 +16,11 @@ An **async** Exercise using **client side** XHR accessing the swapi API at https
   1. Get a Person object from the SWAPI, http://swapi.co/api/people/4/
       - fill in `person4Name` with the value of Person's `name`
       - fill in `person4HomeWorld` with the value of Person's `homeworld` (name)
+
   1. Get a Person object from the SWAPI, http://swapi.co/api/people/14/
       - fill in `person14Name` with the value of Person's `name`
       - fill in `person14Species` with the value of Person's (first) `species` (name)
+
   1. Get a list of all the films from the SWAPI, http://swapi.co/api/films/
       - fill in `filmList` with a new `<li>` element for each `film`
           - fill in each film's `filmTitle` with the title of the `film`
@@ -27,7 +29,10 @@ An **async** Exercise using **client side** XHR accessing the swapi API at https
 
 
 ## Hints
-1. Slides on Async HTTP Request with XHR: http://slides.com/sgnl/xhr#/
+1. Slides on Async HTTP Request with XHR: http://slides.com/sgnl/xhr#/js
+
 1. Documentation on 'XMLHttpRequest' method:
 https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-1. Remember that this is a **client side** excercise which means that all the code will be executed via the browser's javascript runtime, which means that our global context is the 'window' object.  Go ahead and type in 'window' in the browser console to inspect the methods on the 'window' object.  In there you will find a method named 'XMLHttpRequest' which you will be using for this excercise.
+
+1. Remember that this is a **client side** excercise which means that all the code will be executed via the browser's javascript runtime,
+which means that our global context is the 'window' object.  Go ahead and type in 'window' in the browser console to inspect the methods on the 'window' object.  In there you will find a method named 'XMLHttpRequest' which you will be using for this excercise.
