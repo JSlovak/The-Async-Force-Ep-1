@@ -6,6 +6,7 @@ const person4oReq1 = new XMLHttpRequest();
 const person14oReq1 = new XMLHttpRequest();
 const planetoReq1 = new XMLHttpRequest();
 
+// Initialize  XHR Methods for each div / spec request
 person4oReq1.addEventListener('load', person4);
 person4oReq1.open('GET','http://swapi.co/api/people/4/');
 person4oReq1.send();
@@ -18,6 +19,7 @@ planetoReq1.addEventListener('load', planetAppearance);
 planetoReq1.open('GET','http://swapi.co/api/films/');
 planetoReq1.send();
 
+// function called, for Person 4 spec
 function person4(){
    const requestData = JSON.parse(this.responseText);
    const person4Name = document.querySelector('#person4Name');
@@ -34,7 +36,7 @@ function person4(){
      person4NHomeWorld.innerHTML = requestData.name;
   }
 }
-
+ // function called for Person 14 spec
 function person14(){
   const requestData = JSON.parse(this.responseText);
   const person14Name = document.querySelector('#person14Name');
@@ -52,20 +54,15 @@ function person14(){
     person14Species.innerHTML = requestData.name;
   }
 }
-
+// function called for Planets appearance in Movie list spec
 function planetAppearance(){
   const requestData = JSON.parse(this.responseText);
-  console.log(requestData);
-  console.log(requestData.results);
   const resultsLength = requestData.results.length;
-
-
 
   for(let i=0; i<resultsLength; i++){
     const filmList = document.querySelector('#filmList');
     const film = document.createElement('li');
     const planetsLength = requestData.results[i].planets.length;
-    console.log(requestData.results[i].planets);
 
     film.innerHTML = requestData.results[i].title;
     filmList.appendChild(film);
@@ -73,8 +70,6 @@ function planetAppearance(){
     for(let j= 0; j<planetsLength; j++){
       const planetList = document.createElement('ul');
       film.appendChild(planetList);
-      console.log(requestData.results[i].planets[j]);
-      console.log(`${requestData.results[i].planets[j]}`);
 
       const planetoReq2 = new XMLHttpRequest();
       planetoReq2.addEventListener('load', listPlanets);
@@ -83,7 +78,6 @@ function planetAppearance(){
 
       function listPlanets() {
        const requestData = JSON.parse(this.responseText);
-       console.log(requestData);
        planetList.innerHTML = requestData.name;
       }
 
